@@ -10,7 +10,7 @@ alias cd..="cd .."
 alias :q="exit"
 alias c="clear"
 alias ch="history -c && > ~/.bash_history"
-alias e="vim --"
+alias e="emacs"
 alias g="git"
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
 alias ll="ls -l"
@@ -21,9 +21,10 @@ alias path='printf "%b\n" "${PATH//:/\\n}"'
 alias q="exit"
 alias rm="rm -rf --"
 alias t="tmux"
+alias ddd="docker-compose"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
+alias gst="git status"
 # Load OS specific aliases.
-
+echo "Loading ubuntu aliases"
 . "aliases/$OS/bash_aliases"

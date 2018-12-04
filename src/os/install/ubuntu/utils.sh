@@ -71,3 +71,46 @@ upgrade() {
         "APT (upgrade)"
 
 }
+
+download() {
+
+    local url="$1"
+    local output="$2"
+
+    if command -v "curl" &> /dev/null; then
+
+        curl -LsSo "$output" "$url" &> /dev/null
+        #     │││└─ write output to file
+        #     ││└─ show error messages
+        #     │└─ don't show the progress meter
+        #     └─ follow redirects
+
+        return $?
+
+    elif command -v "wget" &> /dev/null; then
+
+        wget -qO "$output" "$url" &> /dev/null
+        #     │└─ write output to file
+        #     └─ don't show output
+
+        return $?
+    fi
+
+    return 1
+
+}
+
+extract() {
+
+    local archive="$1"
+    local outputDir="$2"
+
+    if command -v "tar" &> /dev/null; then
+        tar -zxf "$archive" --strip-components 1 -C "$outputDir"
+        return $?
+    fi
+
+    return 1
+
+}
+

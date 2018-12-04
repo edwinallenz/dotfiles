@@ -8,8 +8,8 @@ declare -r DOTFILES_UTILS_URL="https://raw.githubusercontent.com/$GITHUB_REPOSIT
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-declare dotfilesDirectory="$HOME/projects/dotfiles"
-declare skipQuestions=false
+declare dotfilesDirectory="$HOME/apps/dotfiles"
+declare skipQuestions=true
 
 # ----------------------------------------------------------------------
 # | Helper Functions                                                   |

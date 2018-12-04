@@ -21,5 +21,5 @@ upgrade
 ./../npm.sh
 ./tmux.sh
 ./../vim.sh
-
+./emacs.sh
 ./cleanup.sh

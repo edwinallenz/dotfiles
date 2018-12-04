@@ -6,7 +6,7 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-print_in_purple "\n   Git\n\n"
+print_in_purple "\n   Diodon\n\n"
 
-install_package "Git" "git"
-install_package "Editorconfig" "editorconfig"
+install_package "Diodon" "diodon"
+install_package "Clipboard manager" "diodon"

@@ -8,5 +8,5 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 
 print_in_purple "\n   Git\n\n"
 
-install_package "Git" "git"
-install_package "Editorconfig" "editorconfig"
+install_package "Node" "node"
+install_package "NodeJs" "node"

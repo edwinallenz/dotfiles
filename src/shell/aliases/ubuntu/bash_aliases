@@ -53,3 +53,4 @@ alias u="sudo apt-get update \
             && sudo apt-get upgrade \
             && npm install -g npm \
             && npm upgrade -g"
+alias dc="/usr/local/bin/docker-compose"
