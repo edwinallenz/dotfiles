@@ -27,6 +27,3 @@ print_in_purple "\n   Slack \n\n"
 install_package "Slack dependencies Install" "gconf2"
 print_in_purple "\n   Downloading Slack debs \n\n"
 download_debs
-
-
-

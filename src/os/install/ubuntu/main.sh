@@ -20,6 +20,13 @@ upgrade
 ./misc_tools.sh
 ./../npm.sh
 ./tmux.sh
-./../vim.sh
-./emacs.sh
+../emacs.sh
+./yakuake.sh
+./../asdf.sh
+./zshell.sh
+./slack.sh
 ./cleanup.sh
+./tweak_tool.sh
+./docker.sh
+./elixir.sh
+./diodon.sh

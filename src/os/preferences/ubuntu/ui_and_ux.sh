@@ -26,7 +26,7 @@ print_in_purple "\n   UI & UX\n\n"
 #             'nautilus-home.desktop'
 #          ]\"" \
 #     "Set Launcher favorites"
-execute "setxkbmap -layout us -option ctrl:nocaps"
+#execute "setxkbmap -layout us -option ctrl:nocaps"
 #execute "gsettings set org.gnome.settings-daemon.plugins.keyboard active false"
-execute "xmodmap -e \"keycode 9 = Caps_Lock NoSymbol Caps_Lock\""
-execute "xmodmap -e \"keycode 66 = Escape NoSymbol Escape\""
+#execute "xmodmap -e \"keycode 9 = Caps_Lock NoSymbol Caps_Lock\""
+#execute "xmodmap -e \"keycode 66 = Escape NoSymbol Escape\""

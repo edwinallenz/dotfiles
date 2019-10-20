@@ -7,6 +7,9 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 
 create_symlinks() {
 
+    echo "-----------------------------------------"
+    echo $update
+    echo "-----------------------------------------"
     declare -a FILES_TO_SYMLINK=(
 
         "shell/aliases/bash_aliases"
@@ -49,13 +52,14 @@ create_symlinks() {
         sourceFile="$(cd .. && pwd)/$i"
         targetFile="$HOME/.$(printf "%s" "$i" | sed "s/.*\/\(.*\)/\1/g")"
 
-        if [ ! -e "$targetFile" ] || $skipQuestions; then
+        if ([ ! -e "$targetFile" ] || $skipQuestions) && ! $update; then
 
             execute \
                 "ln -fs $sourceFile $targetFile" \
                 "$targetFile → $sourceFile"
 
         elif [ "$(readlink "$targetFile")" == "$sourceFile" ]; then
+            echo "File already exists"
             print_success "$targetFile → $sourceFile"
         else
 
@@ -85,6 +89,7 @@ create_symlinks() {
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 main() {
+    update=true
     print_in_purple "\n • Create symbolic links\n\n"
     create_symlinks "$@"
 }

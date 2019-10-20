@@ -6,5 +6,6 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-print_in_purple "\n   Yakuake terminal install \n\n"
-install_package "Yakuake" "yakuake konsole"
+print_in_purple "\n   GPG\n\n"
+
+install_package "GPG" "gpg"

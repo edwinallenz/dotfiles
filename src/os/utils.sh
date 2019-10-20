@@ -349,3 +349,14 @@ show_spinner() {
     done
 
 }
+
+pip_install(){
+    if cmd_exists "pip3"; then
+        local -r CMD="$1"
+
+        printf "%s" "Executing pip3 install $CMD"
+        execute "pip3 install $CMD"
+    else
+        print_warning "Unable to execute pip3 command when cli not installed"
+    fi
+}

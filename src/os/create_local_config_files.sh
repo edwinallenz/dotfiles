@@ -12,6 +12,7 @@ create_bash_local() {
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     if [ ! -e "$FILE_PATH" ] || [ -z "$FILE_PATH" ]; then
+        echo "Creating bash.local"
         printf "%s\n\n" "#!/bin/bash" >> "$FILE_PATH"
     fi
 

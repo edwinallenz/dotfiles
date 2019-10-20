@@ -4,7 +4,6 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
     && . "../../utils.sh"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
 add_key() {
 
     wget -qO - "$1" | sudo apt-key add - &> /dev/null
@@ -16,6 +15,11 @@ add_key() {
 add_ppa() {
     sudo add-apt-repository -y ppa:"$1" &> /dev/null
 }
+
+add_repo() {
+    sudo add-apt-repository -y "$1" &> /dev/null
+}
+
 
 add_to_source_list() {
     sudo sh -c "printf 'deb $1' >> '/etc/apt/sources.list.d/$2'"
@@ -52,12 +56,12 @@ package_is_installed() {
 }
 
 update() {
-
+ runAptGetUpdate
     # Resynchronize the package index files from their sources.
 
-    execute \
-        "sudo apt-get update -qqy" \
-        "APT (update)"
+    # execute \
+    #     "sudo apt-get update -qqy" \
+    #     "APT (update)"
 
 }
 
@@ -70,6 +74,64 @@ upgrade() {
             && sudo apt-get -o Dpkg::Options::=\"--force-confnew\" upgrade -qqy" \
         "APT (upgrade)"
 
+}
+
+function trimString()
+{
+    local -r string="${1}"
+
+    sed -e 's/^ *//g' -e 's/ *$//g' <<< "${string}"
+}
+
+function isEmptyString()
+{
+    local -r string="${1}"
+
+    if [[ "$(trimString "${string}")" = '' ]]
+    then
+        echo 'true'
+    else
+        echo 'false'
+    fi
+}
+
+function info()
+{
+    local -r message="${1}"
+
+    echo -e "\033[1;36m${message}\033[0m" 2>&1
+}
+
+function getLastAptGetUpdate()
+{
+    local aptDate="$(stat -c %Y '/var/cache/apt')"
+    local nowDate="$(date +'%s')"
+
+    echo $((nowDate - aptDate))
+}
+
+function runAptGetUpdate()
+{
+    local updateInterval="${1}"
+
+    local lastAptGetUpdate="$(getLastAptGetUpdate)"
+
+    if [[ "$(isEmptyString "${updateInterval}")" = 'true' ]]
+    then
+        # Default To 24 hours
+        updateInterval="$((24 * 60 * 60))"
+    fi
+
+    if [[ "${lastAptGetUpdate}" -gt "${updateInterval}" ]]
+    then
+        execute \
+            "sudo apt-get update -qqy" \
+            "APT (update)"
+
+    else
+        local lastUpdate="$(date -u -d @"${lastAptGetUpdate}" +'%-Hh %-Mm %-Ss')"
+        print_success "Skip apt-get update because its last run was '${lastUpdate}' ago"
+    fi
 }
 
 download() {
@@ -113,4 +175,3 @@ extract() {
     return 1
 
 }
-
